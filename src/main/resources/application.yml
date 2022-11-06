@@ -1,0 +1,37 @@
+
+spring:
+  member-datasource:
+    jdbc-url: jdbc:h2:tcp://localhost/~/member
+    username: sa
+    password:
+    idle-timeout: 0
+    maximum-pool-size: 1
+  book-datasource:
+    jdbc-url: jdbc:h2:tcp://localhost/~/book
+    username: sa
+    password:
+    idle-timeout: 0
+    maximum-pool-size: 1
+  config:
+    activate:
+      on-profile: multi
+
+---
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/member
+    username: sa
+    password:
+    hikari:
+      idle-timeout: 0
+      maximum-pool-size: 1
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate.show_sql: true
+      hibernate.format_sql: true
+      hibernate.use_sql_comments: true
+      hibernate.use_query_cache: false
+  config:
+    activate:
+      on-profile: single
