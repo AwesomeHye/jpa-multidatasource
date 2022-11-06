@@ -15,7 +15,6 @@ class StudentRepositoryTest {
     @Autowired
     StudentRepository studentRepository;
 
-
     @Test
     @DisplayName("student db 연동 테스트")
     void count() {

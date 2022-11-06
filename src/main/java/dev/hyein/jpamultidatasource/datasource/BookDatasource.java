@@ -25,11 +25,10 @@ import java.util.Map;
 )
 public class BookDatasource {
     public static final String DATA_SOURCE_NAME = "book";
-    public static final String DATA_SOURCE = DATA_SOURCE_NAME + BeanName.DATA_SOURCE; //
-    public static final String TRANSACTION_MANAGER = DATA_SOURCE_NAME + BeanName.TRANSACTION_MANAGER; //
-    public static final String ENTITY_MANAGER_FACTORY = DATA_SOURCE_NAME + BeanName.ENTITY_MANAGER_FACTORY; //
+    public static final String DATA_SOURCE = DATA_SOURCE_NAME + BeanName.DATA_SOURCE;
+    public static final String TRANSACTION_MANAGER = DATA_SOURCE_NAME + BeanName.TRANSACTION_MANAGER;
+    public static final String ENTITY_MANAGER_FACTORY = DATA_SOURCE_NAME + BeanName.ENTITY_MANAGER_FACTORY;
 
-    @Primary
     @Bean(ENTITY_MANAGER_FACTORY) // 다른 데이터소스와 빈 네임 중복되지 않도록 반드시 지정
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -48,14 +47,12 @@ public class BookDatasource {
         return em;
     }
 
-    @Primary
     @Bean(DATA_SOURCE)
     @ConfigurationProperties(prefix = "spring.book-datasource")
     public DataSource datasource() {
         return DataSourceBuilder.create().build();
     }
 
-    @Primary
     @Bean(TRANSACTION_MANAGER)
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();

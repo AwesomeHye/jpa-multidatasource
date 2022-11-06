@@ -29,7 +29,6 @@ public class MemberDatasource {
     public static final String TRANSACTION_MANAGER = DATA_SOURCE_NAME + BeanName.TRANSACTION_MANAGER; // memberTransactionManager
     public static final String ENTITY_MANAGER_FACTORY = DATA_SOURCE_NAME + BeanName.ENTITY_MANAGER_FACTORY; // memberEntityManagerFactory
 
-//    @Primary
     @Bean(ENTITY_MANAGER_FACTORY) // 다른 데이터소스와 빈 네임 중복되지 않도록 반드시 지정
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -48,14 +47,12 @@ public class MemberDatasource {
         return em;
     }
 
-//    @Primary
     @Bean(DATA_SOURCE)
     @ConfigurationProperties(prefix = "spring.member-datasource")
     public DataSource datasource() {
         return DataSourceBuilder.create().build();
     }
 
-//    @Primary
     @Bean(TRANSACTION_MANAGER)
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
